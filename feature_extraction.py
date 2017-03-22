@@ -1,5 +1,6 @@
 # imports
 from pandas import read_csv, DataFrame
+from sklearn import preprocessing
 
 # DataFrames
 bus_df = read_csv('./data/bus.csv')
@@ -8,7 +9,14 @@ stairs_df = read_csv('./data/stairs.csv')
 running_df = read_csv('./data/running.csv')
 walking_df = read_csv('./data/walking.csv')
 
-# frame extraction
+# normalization
+bus_df = DataFrame(preprocessing.normalize(bus_df.values, norm='l2'))
+dancing_df = DataFrame(preprocessing.normalize(dancing_df.values, norm='l2'))
+stairs_df = DataFrame(preprocessing.normalize(stairs_df.values, norm='l2'))
+running_df = DataFrame(preprocessing.normalize(running_df.values, norm='l2'))
+walking_df = DataFrame(preprocessing.normalize(walking_df.values, norm='l2'))
+
+# frame and feature extraction
 start = 0
 stop = int(3 * 60 / 0.01) # 3 minutes
 interval = int(10 / 0.01) # 10 seconds
