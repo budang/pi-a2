@@ -46,4 +46,4 @@ for i in range(start, stop, interval):
   extract_features('stairs', stairs_df[start:interval])
   extract_features('running', running_df[start:interval])
   extract_features('walking', walking_df[start:interval])
-DataFrame.from_dict(features).to_csv('./data/features.csv')
+DataFrame.from_dict(features).to_csv('./data/features.csv', index=False)
