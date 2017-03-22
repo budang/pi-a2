@@ -6,14 +6,14 @@ from pandas import read_csv, DataFrame
 
 # features
 features_df = read_csv('./data/features.csv')
-train_df = features_df[0:60]
-test_df = features_df[60:90]
+train = features_df[0:60].values
+test = features_df[60:90].values
 
-X_train = train_df[:, 0:-1]	# feature vector
-y_train = train_df[:, -1]	# ground truth
+X_train = train[:, 0:-1]# feature vector
+y_train = train[:, -1]	# ground truth
 
-X_test = test_df[:, 0:-1]	# feature vector
-y_test = test_df[:, -1]		# ground truth
+X_test = test[:, 0:-1]	# feature vector
+y_test = test[:, -1]	# ground truth
 
 # train
 svm_clf = svm.SVC().fit(X_train, y_train)
@@ -28,8 +28,8 @@ lr_score = lr_clf.score(X_test, y_test)
 knn_score = knn_clf.score(X_test, y_test)
 
 # report accuracies
-print('accuracies')
-print('SupportVectorMachine:\t' + str(svm_score))
-print('DecisionTree:\t' + str(tree_score))
-print('LogisticRegression:\t' + str(lr_score))
-print('KNearestNeighbors:\t' + str(knn_score))
+print('ACCURACIES')
+print('SupportVectorMachine:\t' + str(svm_score * 100) + '%')
+print('DecisionTree:\t\t' + str(tree_score * 100) + '%')
+print('LogisticRegression:\t' + str(lr_score * 100) + '%')
+print('KNearestNeighbors:\t' + str(knn_score * 100) + '%')
