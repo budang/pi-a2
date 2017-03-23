@@ -59,10 +59,10 @@ def extract_features(activity, df):
   features['activity'].append(activity)
 
 for i in range(start, stop, interval):
-  extract_features('bus', bus_df[start:interval])
-  extract_features('dancing', dancing_df[start:interval])
-  extract_features('stairs', stairs_df[start:interval])
-  extract_features('running', running_df[start:interval])
-  extract_features('walking', walking_df[start:interval])
+  extract_features('bus', bus_df[i:i + interval])
+  extract_features('dancing', dancing_df[i:i + interval])
+  extract_features('stairs', stairs_df[i:i + interval])
+  extract_features('running', running_df[i:i + interval])
+  extract_features('walking', walking_df[i:i + interval])
 
 DataFrame.from_dict(features).to_csv('./data/features.csv', index=False)

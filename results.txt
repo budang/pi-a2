@@ -1,0 +1,18 @@
+ACCURACIES
+SupportVectorMachine:	0.866666666667
+DecisionTree:		0.833333333333
+LogisticRegression:	0.866666666667
+KNearestNeighbors:	0.933333333333
+
+PRECISION
+SupportVectorMachine:	0.904761904762
+DecisionTree:		0.909090909091
+LogisticRegression:	0.904761904762
+KNearestNeighbors:	0.942857142857
+
+RECALL
+SupportVectorMachine:	0.866666666667
+DecisionTree:		0.833333333333
+LogisticRegression:	0.866666666667
+KNearestNeighbors:	0.933333333333
+
