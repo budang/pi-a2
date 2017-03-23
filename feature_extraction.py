@@ -22,22 +22,40 @@ stop = int(3 * 60 / 0.01) # 3 minutes
 interval = int(10 / 0.01) # 10 seconds
 
 features = {
+  'X kurt': [], 'Y kurt': [], 'Z kurt': [],
+  'X max':  [], 'Y max':  [], 'Z max':  [],
   'X mean': [], 'Y mean': [], 'Z mean': [],
-  'X std': [], 'Y std': [], 'Z std': [],
+  'X min':  [], 'Y min':  [], 'Z min':  [],
   'X skew': [], 'Y skew': [], 'Z skew': [],
+  'X std':  [], 'Y std':  [], 'Z std':  [],
   'activity': []
 }
 
 def extract_features(activity, df):
+  features['X kurt'].append(df[df.columns[0]].kurt())
+  features['Y kurt'].append(df[df.columns[1]].kurt())
+  features['Z kurt'].append(df[df.columns[2]].kurt())
+
+  features['X max'].append(df[df.columns[0]].max())
+  features['Y max'].append(df[df.columns[1]].max())
+  features['Z max'].append(df[df.columns[2]].max())
+
   features['X mean'].append(df[df.columns[0]].mean())
   features['Y mean'].append(df[df.columns[1]].mean())
   features['Z mean'].append(df[df.columns[2]].mean())
-  features['X std'].append(df[df.columns[0]].std())
-  features['Y std'].append(df[df.columns[1]].std())
-  features['Z std'].append(df[df.columns[2]].std())
+
+  features['X min'].append(df[df.columns[0]].min())
+  features['Y min'].append(df[df.columns[1]].min())
+  features['Z min'].append(df[df.columns[2]].min()) 
+
   features['X skew'].append(df[df.columns[0]].skew())
   features['Y skew'].append(df[df.columns[1]].skew())
   features['Z skew'].append(df[df.columns[2]].skew())
+
+  features['X std'].append(df[df.columns[0]].std())
+  features['Y std'].append(df[df.columns[1]].std())
+  features['Z std'].append(df[df.columns[2]].std())
+
   features['activity'].append(activity)
 
 for i in range(start, stop, interval):
@@ -46,4 +64,5 @@ for i in range(start, stop, interval):
   extract_features('stairs', stairs_df[start:interval])
   extract_features('running', running_df[start:interval])
   extract_features('walking', walking_df[start:interval])
+
 DataFrame.from_dict(features).to_csv('./data/features.csv', index=False)
